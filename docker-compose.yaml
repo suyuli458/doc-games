@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  doc-games:
+    image: ghcr.io/suyuli458/doc-games:ubuntu
+    container_name: doc-games-ubuntu
+    environment:
+      - ROOT_PASSWORD=your_root_password
+      - NGROK_TOKEN=your_ngrok_token
+    restart: unless-stopped
+    tty: true
