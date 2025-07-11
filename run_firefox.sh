@@ -3,8 +3,8 @@
 set -e  # 遇到错误就退出
 
 # 颜色定义
-GREEN='\033[0;32m'
-RED='\033[0;31m'
+GREEN='\033[32m'
+RED='\033[31m'
 NC='\033[0m' # No Color
 
 # 1. 更新系统并安装 curl
@@ -17,7 +17,7 @@ if ! command -v curl >/dev/null 2>&1; then
   elif command -v dnf >/dev/null 2>&1; then
     dnf upgrade -y && dnf install -y curl
   else
-    echo "${RED}不支持的包管理器，无法安装 curl${NC}"
+    echo -e "${RED}不支持的包管理器，无法安装 curl${NC}"
     exit 1
   fi
 else
@@ -50,8 +50,8 @@ curl -fsSL "$COMPOSE_URL" -o docker-compose.yaml
 # 5. 启动项目并检查状态
 echo "启动服务..."
 if docker compose up -d; then
-  echo "${GREEN}ok${NC}"
+  echo -e "${GREEN}✔ OK! Web Firfox启动成功，打开IP:8080${NC}"
 else
-  echo "${RED}启动失败，请检查日志${NC}"
+  echo -e "${RED}启动失败，请检查日志${NC}"
   exit 1
 fi
