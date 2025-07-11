@@ -1,0 +1,19 @@
+services:
+  firefox:
+    image: lscr.io/linuxserver/firefox:latest
+    container_name: firefox
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - LC_ALL=zh_CN.UTF-8
+      - INSTALL_PACKAGES=fonts-noto-cjk
+      - DOCKER_MODS=linuxserver/mods:universal-package-install
+    volumes:
+      - ./config:/config
+    ports:
+      - 8080:3000
+    shm_size: "1gb"
+    restart: unless-stopped
